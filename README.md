@@ -75,10 +75,14 @@ those remain untested. So far, some of PGRX's build tooling works on Windows, bu
 - `libclang` 5.0 or greater (required by bindgen)
    - Ubuntu: `apt install libclang-dev` or `apt install clang`
    - RHEL: `yum install clang`
-- GCC 7 or newer
+   - OS X: Apple's Clang is prebuilt into MacOS. 
+But to access it, you need to install Xcode Command Line Tools by `xcode-select --install` and follow the interactive instructions.
+Other build tools, including make will also be installed.
+- GCC 7 or newer. Note that MacOS uses Clang instead of GCC (`gcc -v` returns a Clang version), and that is fine for pgrx.
 - [PostgreSQL's build dependencies](https://wiki.postgresql.org/wiki/Compile_and_Install_from_source_code) ‡
    - Debian-likes: `sudo apt-get install build-essential libreadline-dev zlib1g-dev flex bison libxml2-dev libxslt-dev libssl-dev libxml2-utils xsltproc ccache pkg-config`
    - RHEL-likes: `sudo yum install -y bison-devel readline-devel zlib-devel openssl-devel wget ccache && sudo yum groupinstall -y 'Development Tools'`
+   - OS X: `brew install icu4c pkg-config openssl readline zlib`. [Get brew](https://brew.sh).
 
  † PGRX has no MSRV policy, thus may require the latest stable version of Rust, available via Rustup
 
@@ -103,18 +107,6 @@ In order to use GCC 7, install [`scl`](https://wiki.centos.org/AdditionalResourc
 yum install centos-release-scl
 yum install devtoolset-7
 scl enable devtoolset-7 bash
-```
-</details>
-
-<details style="border: 1px solid; padding: 0.25em 0.5em 0;">
-   <summary><i>How to:</i> <b>Homebrew on macOS</b></summary>
-
-As macOS provides no package manager, it is recommended to use https://brew.sh for C dependencies.
-
-In particular, you will probably need these if you don't have them already:
-
-```zsh
-brew install git icu4c pkg-config
 ```
 </details>
 
